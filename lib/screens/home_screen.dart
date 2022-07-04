@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../widgets/hero_section.dart';
 import '../widgets/school_card.dart';
+
+import './login_screen.dart';
 
 import '../models/school.dart';
 
@@ -52,7 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
             iconSize: 30.0,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, LoginScreen.routeName);
+            },
             icon: const Icon(
               Icons.account_circle_outlined
             ),
@@ -80,10 +85,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-            )
+            ),
+            const SizedBox(
+              height: 15.0,
+            ),
+            SmoothPageIndicator(
+              controller: pageController,
+              count: schools.length,
+              effect: const WormEffect(),
+              onDotClicked: (index) {
+                pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.bounceOut
+                );
+              },
+            ),
+            const SizedBox(
+              height: 15.0,
+            ),
           ],
         )
       ),
     );
   }
 }
+
+

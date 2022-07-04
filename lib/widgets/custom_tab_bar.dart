@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class CustomTabBar extends StatelessWidget {
@@ -14,7 +16,7 @@ class CustomTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TabBar(
-      padding: const EdgeInsets.only(bottom: 20.0),
+      padding: Platform.isIOS ? const EdgeInsets.only(bottom: 20.0) : null,
       onTap: onTap,
       indicatorPadding: EdgeInsets.zero,
       indicator: const BoxDecoration(

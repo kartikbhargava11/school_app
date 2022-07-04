@@ -19,15 +19,15 @@ class _HeroSectionState extends State<HeroSection> {
           key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                  hintText: "Which School are you looking?",
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 2.0),
+              Material(
+                elevation: 2.0,
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                    hintText: "Which School are you looking?",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.search),
+                    prefixIconColor: Colors.red,
                   ),
                 ),
               )
