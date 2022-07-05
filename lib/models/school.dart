@@ -2,6 +2,7 @@ class School {
   final String name;
   final String imageUrl;
   final String address;
+  final String completeAddress;
   final String classes;
   final String board;
   final String monthlyFees;
@@ -12,6 +13,7 @@ class School {
     required this.name,
     required this.imageUrl,
     required this.address,
+    required this.completeAddress,
     required this.classes,
     required this.board,
     required this.monthlyFees,
