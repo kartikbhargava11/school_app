@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProfileActions extends StatelessWidget {
-  const ProfileActions({Key? key}) : super(key: key);
+class SchoolProfileActions extends StatelessWidget {
+  const SchoolProfileActions({Key? key}) : super(key: key);
 
   Widget _buildCircularButton(IconData icon, Color color) {
     return Container(

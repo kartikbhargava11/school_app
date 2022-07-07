@@ -9,6 +9,13 @@ class School {
   final int favourites;
   final double distance;
   final bool isAdmissionOpen;
+  final String ownership;
+  final int establishment;
+  final String coEdStatus;
+  final String campusType;
+  final String campusSize;
+  final List<Map<String, String>> formDetails;
+
   School({
     required this.name,
     required this.imageUrl,
@@ -20,5 +27,11 @@ class School {
     required this.favourites,
     required this.distance,
     this.isAdmissionOpen = false,
+    required this.ownership,
+    required this.establishment,
+    required this.coEdStatus,
+    required this.campusType,
+    required this.campusSize,
+    required this.formDetails,
   });
 }

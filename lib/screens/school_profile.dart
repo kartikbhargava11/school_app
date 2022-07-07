@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/classes_list.dart';
-import '../widgets/profile_actions.dart';
+import '../widgets/school_profile_header.dart';
+import '../widgets/school_profile_actions.dart';
+import '../widgets/school_profile_apply_to_classes.dart';
+import '../widgets/school_profile_stats.dart';
+import '../widgets/school_profile_fee_structure.dart';
 
 import '../models/school.dart';
 
@@ -19,6 +22,12 @@ class SchoolProfile extends StatelessWidget {
         elevation: 4.0,
         child: child,
       )
+    );
+  }
+
+  Widget _buildSizedBox({required double height}) {
+    return SizedBox(
+      height: height,
     );
   }
 
@@ -77,55 +86,37 @@ class SchoolProfile extends StatelessWidget {
                   right: 0,
                   bottom: 0,
                   child: _buildContainer(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                              school.name,
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              )
-                          ),
-                          const SizedBox(
-                            height: 6.0,
-                          ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on,
-                                color: Colors.red,
-                                size: 12.0,
-                              ),
-                              const SizedBox(
-                                width: 4.0,
-                              ),
-                              Text(
-                                  school.completeAddress,
-                                  style: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 12.0,
-                                  )
-                              )
-                            ],
-                          ),
-                        ],
-                      )
+                    child: SchoolProfileHeader(
+                      school: school,
                     )
                   ),
                 )
               ],
             ),
             _buildContainer(
-              child: const ProfileActions(),
+              child: const SchoolProfileActions(),
             ),
-            const SizedBox(
+            _buildSizedBox(
               height: 6.0,
             ),
             _buildContainer(
-              child: ClassesList()
+              child: SchoolProfileApplyToClasses(
+                formDetails: school.formDetails,
+              )
+            ),
+            _buildSizedBox(
+              height: 6.0,
+            ),
+            _buildContainer(
+              child: SchoolProfileStats(
+                school: school,
+              )
+            ),
+            _buildSizedBox(
+              height: 6.0,
+            ),
+            _buildContainer(
+              child: SchoolProfileFeeStructure()
             ),
           ]
         )
