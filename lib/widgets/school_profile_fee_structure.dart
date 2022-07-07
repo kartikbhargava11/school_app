@@ -180,7 +180,7 @@ class SchoolProfileFeeStructure extends StatelessWidget {
                             width: 5.0,
                           ),
                           Icon(
-                              Icons.arrow_drop_down
+                              Icons.keyboard_arrow_down
                           )
                         ],
                       )

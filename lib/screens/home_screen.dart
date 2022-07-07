@@ -5,6 +5,7 @@ import '../widgets/hero_section.dart';
 import '../widgets/school_card.dart';
 
 import './login_screen.dart';
+import './search_location.dart';
 
 import '../models/school.dart';
 
@@ -30,21 +31,48 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0.0,
         iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         titleTextStyle: const TextStyle(
-          color: Colors.blue,
+          color: Colors.black,
         ),
         backgroundColor: Colors.white,
-        title: const Text(
-          "UniApply",
-          style: TextStyle(
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold
-          )
+        title: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, SearchLocation.routeName);
+          },
+          child: Row(
+            children: const [
+              Icon(
+                Icons.location_on,
+                color: Colors.red,
+                size: 18.0,
+              ),
+              SizedBox(
+                width: 4.0,
+              ),
+              Expanded(
+                child: Text(
+                  "9/59, Block 9, Press Colony, Mayapuri",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 16.0
+                  )
+                ),
+              ),
+              SizedBox(
+                width: 4.0,
+              ),
+              Icon(
+                Icons.keyboard_arrow_down,
+                size: 20.0,
+              ),
+            ],
+          ),
         ),
         actions: [
           IconButton(

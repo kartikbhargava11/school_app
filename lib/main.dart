@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './screens/nav_screen.dart';
 import './screens/login_screen.dart';
+import './screens/search_location.dart';
 
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         LoginScreen.routeName: (ctx) => const LoginScreen(),
+        SearchLocation.routeName: (ctx) => const SearchLocation()
       },
       home: const NavScreen(),
     );

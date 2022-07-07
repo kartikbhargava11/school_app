@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './home_screen.dart';
+import './profile_screen.dart';
 import '../widgets/custom_tab_bar.dart';
 
 class NavScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _NavScreenState extends State<NavScreen> {
     Scaffold(),
     Scaffold(),
     Scaffold(),
-    Scaffold(),
+    ProfileScreen(),
   ];
 
   final Map<String, IconData> _icons = {
