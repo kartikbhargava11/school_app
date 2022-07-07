@@ -8,11 +8,36 @@ import '../widgets/school_profile_fee_structure.dart';
 
 import '../models/school.dart';
 
-class SchoolProfile extends StatelessWidget {
+
+class SchoolProfile extends StatefulWidget {
   final School school;
   const SchoolProfile({
     required this.school,
     Key? key}) : super(key: key);
+
+  @override
+  State<SchoolProfile> createState() => _SchoolProfileState();
+}
+
+class _SchoolProfileState extends State<SchoolProfile> {
+  var _scrollOffset = 0.0;
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController()..addListener(() {
+      setState(() {
+        _scrollOffset = _scrollController.offset;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   Widget _buildContainer({required Widget child}) {
     return Container(
@@ -31,12 +56,41 @@ class SchoolProfile extends StatelessWidget {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      appBar: _scrollOffset > 300
+        ?
+      AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          widget.school.name,
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        titleTextStyle: const TextStyle(
+          fontSize: 20.0,
+          color: Colors.black
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            iconSize: 32.0,
+            icon: const Icon(Icons.share),
+          ),
+          IconButton(
+            onPressed: () {},
+            iconSize: 32.0,
+            icon: const Icon(Icons.shopping_cart),
+          ),
+        ],
+      )
+        :
+      null,
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             Stack(
@@ -46,7 +100,7 @@ class SchoolProfile extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    school.imageUrl,
+                    widget.school.imageUrl,
                   )
                 ),
                 Padding(
@@ -87,7 +141,7 @@ class SchoolProfile extends StatelessWidget {
                   bottom: 0,
                   child: _buildContainer(
                     child: SchoolProfileHeader(
-                      school: school,
+                      school: widget.school,
                     )
                   ),
                 )
@@ -101,7 +155,7 @@ class SchoolProfile extends StatelessWidget {
             ),
             _buildContainer(
               child: SchoolProfileApplyToClasses(
-                formDetails: school.formDetails,
+                formDetails: widget.school.formDetails,
               )
             ),
             _buildSizedBox(
@@ -109,7 +163,7 @@ class SchoolProfile extends StatelessWidget {
             ),
             _buildContainer(
               child: SchoolProfileStats(
-                school: school,
+                school: widget.school,
               )
             ),
             _buildSizedBox(
@@ -117,6 +171,9 @@ class SchoolProfile extends StatelessWidget {
             ),
             _buildContainer(
               child: SchoolProfileFeeStructure()
+            ),
+            _buildSizedBox(
+              height: 6.0,
             ),
           ]
         )
