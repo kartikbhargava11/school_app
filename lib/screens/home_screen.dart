@@ -6,6 +6,7 @@ import '../widgets/school_card.dart';
 
 import './login_screen.dart';
 import './search_location.dart';
+import './dashboard_screen.dart';
 
 import '../models/school.dart';
 
@@ -85,7 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, LoginScreen.routeName);
+            },
             icon: const Icon(
               Icons.shopping_cart_outlined
             ),
@@ -93,10 +96,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, LoginScreen.routeName);
+              Navigator.pushNamed(context, DashboardScreen.routeName);
             },
             icon: const Icon(
-              Icons.account_circle_outlined
+              Icons.dashboard
             ),
             iconSize: 30.0,
           )

@@ -104,7 +104,7 @@ class _AddNewChildState extends State<AddNewChild> {
                 itemBuilder: (ctx, index) {
                   if (index == 0) {
                     return const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                      padding: EdgeInsets.only(top: 10.0, bottom: 4.0, left: 16.0, right: 16.0),
                       child:  Text(
                         "Select Class",
                         style: TextStyle(
@@ -128,7 +128,7 @@ class _AddNewChildState extends State<AddNewChild> {
                       Navigator.pop(context);
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
                       child: Row(
                         children: [
                           Text(

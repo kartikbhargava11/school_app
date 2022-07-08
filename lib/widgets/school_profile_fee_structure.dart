@@ -51,57 +51,51 @@ class SchoolProfileFeeStructure extends StatelessWidget {
       return GestureDetector(
         onTap: () {},
         behavior: HitTestBehavior.opaque,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        child: SizedBox(
           height: 500,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Select Class",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
+          child: ListView.separated(
+            itemCount: _standards.length + 1,
+            itemBuilder: (ctx, index) {
+              if (index == 0) {
+                return const Padding(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 4.0, left: 16.0, right: 16.0),
+                  child: Text(
+                    "Select Class",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                );
+              }
+              final Map<String, dynamic> standard = _standards[index - 1];
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+                child: Row(
+                  children: [
+                    Text(
+                      standard["name"],
+                      style: TextStyle(
+                        color: standard["active"] == true ? Colors.blue : Colors.grey,
+                        fontSize: 16.0
+                      )
+                    ),
+                    const Spacer(),
+                    if (standard["active"] == true)
+                      const Icon(
+                        Icons.check_circle,
+                        color: Colors.blue,
+                        size: 24.0,
+                      )
+                  ],
                 ),
-              ),
-              const SizedBox(
-                height: 5.0,
-              ),
-              const Divider(),
-              const SizedBox(
-                height: 5.0,
-              ),
-              ListView.separated(
-                shrinkWrap: true,
-                itemCount: _standards.length,
-                itemBuilder: (ctx, index) {
-                  final Map<String, dynamic> standard = _standards[index];
-                  return Row(
-                    children: [
-                      Text(
-                        standard["name"],
-                        style: TextStyle(
-                          color: standard["active"] == true ? Colors.blue : Colors.grey,
-                          fontSize: 16.0
-                        )
-                      ),
-                      const Spacer(),
-                      if (standard["active"] == true)
-                        const Icon(
-                          Icons.check_circle,
-                          color: Colors.blue,
-                          size: 24.0,
-                        )
-                    ],
-                  );
-                },
-                separatorBuilder: (ctx, index) {
-                  return const Divider(
-                    color: Colors.grey,
-                  );
-                },
-              )
-            ],
+              );
+            },
+            separatorBuilder: (ctx, index) {
+              return const Divider(
+                color: Colors.grey,
+              );
+            },
           )
         ),
       );
@@ -146,10 +140,10 @@ class SchoolProfileFeeStructure extends StatelessWidget {
                     width: 3.0,
                   ),
                   const Text(
-                      "Filters",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold
-                      )
+                    "Filters",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold
+                    )
                   ),
                   const SizedBox(
                     width: 5.0,

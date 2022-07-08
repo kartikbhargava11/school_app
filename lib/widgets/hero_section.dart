@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/dashboard_screen.dart';
+
 class HeroSection extends StatefulWidget {
 
   const HeroSection({Key? key}) : super(key: key);
@@ -38,7 +40,9 @@ class _HeroSectionState extends State<HeroSection> {
           height: 24.0,
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, DashboardScreen.routeName);
+          },
           child: Container(
             decoration: BoxDecoration(
               color: Colors.blue[50],
