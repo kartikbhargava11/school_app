@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './screens/nav_screen.dart';
 import './screens/login_screen.dart';
 import './screens/search_location.dart';
+import './screens/add_new_child_screen.dart';
 
 
 void main() {
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         LoginScreen.routeName: (ctx) => const LoginScreen(),
-        SearchLocation.routeName: (ctx) => const SearchLocation()
+        SearchLocation.routeName: (ctx) => const SearchLocation(),
+        AddNewChild.routeName: (ctx) => const AddNewChild()
       },
       home: const NavScreen(),
     );
