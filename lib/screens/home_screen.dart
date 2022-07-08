@@ -20,12 +20,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late PageController pageController;
+  late PageController _pageController;
+  late PageController _slideshow;
 
   @override
   void initState() {
-    pageController = PageController(initialPage: 0);
+    _pageController = PageController(initialPage: 0);
+    _slideshow = PageController(initialPage: 0);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    _slideshow.dispose();
+    super.dispose();
   }
 
   @override
@@ -104,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               height: 415,
               child: PageView.builder(
-                controller: pageController,
+                controller: _pageController,
                 itemCount: schools.length,
                 itemBuilder: (ctx, index) {
                   final School school = schools[index];
@@ -118,11 +127,11 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 15.0,
             ),
             SmoothPageIndicator(
-              controller: pageController,
+              controller: _pageController,
               count: schools.length,
               effect: const WormEffect(),
               onDotClicked: (index) {
-                pageController.animateToPage(
+                _pageController.animateToPage(
                   index,
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.bounceOut
@@ -130,7 +139,36 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             const SizedBox(
+              height: 25.0,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              height: 415,
+              child: PageView.builder(
+                controller: _slideshow,
+                itemCount: 3,
+                itemBuilder: (ctx, index) {
+                  return Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage("assets/images/image${index + 1}.jpg"),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(
               height: 15.0,
+            ),
+            SmoothPageIndicator(
+              controller: _slideshow,
+              count: 3,
+              effect: const WormEffect(),
+              onDotClicked: (index) {
+                _slideshow.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.bounceOut
+                );
+              },
             ),
           ],
         )

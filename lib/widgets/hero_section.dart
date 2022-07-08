@@ -35,12 +35,60 @@ class _HeroSectionState extends State<HeroSection> {
           )
         ),
         const SizedBox(
+          height: 24.0,
+        ),
+        GestureDetector(
+          onTap: () {},
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue[50],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.blue[100] as Color,
+                  blurRadius: 0.3,
+                  offset: const Offset(0, 1),
+                )
+              ]
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.dashboard,
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "View Dashboard",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      )
+                    ),
+                    Text(
+                      "Tap here to view application status"
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                const Icon(
+                  Icons.arrow_forward_ios_outlined
+                )
+              ],
+            )
+          ),
+        ),
+        const SizedBox(
           height: 12.0,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0),
           child: Row(
-            children: [
+            children: const [
               Text(
                 "Schools in Delhi",
                 style: TextStyle(
