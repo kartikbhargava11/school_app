@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './add_new_child_screen.dart';
+import './common_form_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -129,7 +130,9 @@ class ProfileScreen extends StatelessWidget {
               _buildContainer(
                 icon: Icons.file_copy_rounded,
                 label: "Common Form",
-                onTap: () {}
+                onTap: () {
+                  Navigator.pushNamed(context, CommonFormScreen.routeName);
+                }
               ),
               _buildContainer(
                 icon: Icons.favorite,

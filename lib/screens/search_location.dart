@@ -10,12 +10,12 @@ class SearchLocation extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         backgroundColor: Colors.white,
-        titleTextStyle: TextStyle(
+        titleTextStyle: const TextStyle(
           color: Colors.black,
           fontSize: 22.0,
           fontWeight: FontWeight.bold
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         title: const Text(
