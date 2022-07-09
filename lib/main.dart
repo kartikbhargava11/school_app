@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         LoginScreen.routeName: (ctx) => const LoginScreen(),
-        SearchLocation.routeName: (ctx) => const SearchLocation(),
+        SearchLocation.routeName: (ctx) => SearchLocation(),
         AddNewChild.routeName: (ctx) => const AddNewChild(),
         DashboardScreen.routeName: (ctx) => const DashboardScreen(),
         CommonFormScreen.routeName: (ctx) => const CommonFormScreen()
