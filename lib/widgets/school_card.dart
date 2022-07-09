@@ -196,6 +196,7 @@ class SchoolCard extends StatelessWidget {
                           "Point Calculator",
                           style: TextStyle(
                             color: Colors.grey,
+                            fontSize: 12.0
                           )
                         )
                       ),
@@ -205,6 +206,7 @@ class SchoolCard extends StatelessWidget {
                           "Compare",
                           style: TextStyle(
                             color: Colors.grey,
+                            fontSize: 12.0
                           )
                         )
                       ),
@@ -219,6 +221,7 @@ class SchoolCard extends StatelessWidget {
                           "Apply Now",
                           style: TextStyle(
                             color: Colors.white,
+                            fontSize: 12.0
                           )
                         ),
                       ),
