@@ -23,7 +23,7 @@ class _NavScreenState extends State<NavScreen> {
   final Map<String, IconData> _icons = {
     "Home": Icons.home,
     "Compare": Icons.compare,
-    "School": Icons.school,
+    "School": Icons.account_balance_rounded,
     "Admission": Icons.calendar_month,
     "Profile": Icons.menu,
   };

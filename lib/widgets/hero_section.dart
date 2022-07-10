@@ -39,6 +39,64 @@ class _HeroSectionState extends State<HeroSection> {
         const SizedBox(
           height: 24.0,
         ),
+        Stack(
+          children: [
+            Container(
+              height: 200,
+              color: Colors.yellow,
+            ),
+            Positioned(
+              top: 60,
+              right: 60,
+              child: Column(
+                children: [
+                  const Text(
+                    "Admission Open",
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                  const SizedBox(
+                    height: 5.0,
+                  ),
+                  const Text(
+                    "For Class 11 (2022-23)",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0.0),
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Colors.white,
+                      )
+                    ),
+                    child: Text(
+                      "Apply Now",
+                      style: TextStyle(
+                        color: Colors.orange[700],
+                        fontWeight: FontWeight.bold
+                      )
+                    )
+                  )
+                ],
+              )
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 24.0,
+        ),
         GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, DashboardScreen.routeName);

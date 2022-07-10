@@ -22,19 +22,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late PageController _pageController;
-  late PageController _slideshow;
 
   @override
   void initState() {
     _pageController = PageController(initialPage: 0);
-    _slideshow = PageController(initialPage: 0);
     super.initState();
   }
 
   @override
   void dispose() {
     _pageController.dispose();
-    _slideshow.dispose();
     super.dispose();
   }
 
@@ -132,46 +129,19 @@ class _HomeScreenState extends State<HomeScreen> {
             SmoothPageIndicator(
               controller: _pageController,
               count: schools.length,
-              effect: const WormEffect(),
+              effect: const ExpandingDotsEffect(
+                activeDotColor: Colors.blue,
+              ),
               onDotClicked: (index) {
                 _pageController.animateToPage(
                   index,
                   duration: const Duration(milliseconds: 300),
-                  curve: Curves.bounceOut
+                  curve: Curves.easeInOut
                 );
               },
             ),
             const SizedBox(
               height: 25.0,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              height: 415,
-              child: PageView.builder(
-                controller: _slideshow,
-                itemCount: 3,
-                itemBuilder: (ctx, index) {
-                  return Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/images/image${index + 1}.jpg"),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 15.0,
-            ),
-            SmoothPageIndicator(
-              controller: _slideshow,
-              count: 3,
-              effect: const WormEffect(),
-              onDotClicked: (index) {
-                _slideshow.animateToPage(
-                    index,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.bounceOut
-                );
-              },
             ),
           ],
         )
