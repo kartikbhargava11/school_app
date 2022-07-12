@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:sticky_headers/sticky_headers.dart';
 
 import '../widgets/hero_section.dart';
 import '../widgets/school_card.dart';
@@ -22,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late PageController _pageController;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -102,15 +104,41 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-              child: HeroSection(),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            elevation: 0.0,
+            pinned: true,
+            backgroundColor: Colors.white,
+            title: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Material(
+                    elevation: 2.0,
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                        hintText: "Which School are you looking?",
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.search),
+                        prefixIconColor: Colors.red,
+                      ),
+                    ),
+                  )
+                ],
+              )
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          ),
+          const SliverPadding(
+            padding: EdgeInsets.only(left: 12.0, right: 12.0, top: 12.0),
+            sliver: SliverToBoxAdapter(
+              child: HeroSection(),
+            )
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              margin: const EdgeInsets.only(left: 12.0, right: 12.0, top: 12.0),
               height: 415,
               child: PageView.builder(
                 controller: _pageController,
@@ -123,29 +151,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            const SizedBox(
-              height: 15.0,
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 12.0),
+            sliver: SliverToBoxAdapter(
+              child: Align(
+                alignment: AlignmentDirectional.center,
+                child: SmoothPageIndicator(
+                  controller: _pageController,
+                  count: schools.length,
+                  effect: const ExpandingDotsEffect(
+                    activeDotColor: Colors.blue,
+                  ),
+                  onDotClicked: (index) {
+                    _pageController.animateToPage(
+                        index,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut
+                    );
+                  },
+                ),
+              )
             ),
-            SmoothPageIndicator(
-              controller: _pageController,
-              count: schools.length,
-              effect: const ExpandingDotsEffect(
-                activeDotColor: Colors.blue,
-              ),
-              onDotClicked: (index) {
-                _pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut
-                );
-              },
-            ),
-            const SizedBox(
-              height: 25.0,
-            ),
-          ],
-        )
-      ),
+          )
+        ],
+      )
     );
   }
 }

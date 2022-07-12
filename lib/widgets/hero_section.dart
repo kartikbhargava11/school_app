@@ -11,34 +11,11 @@ class HeroSection extends StatefulWidget {
 }
 
 class _HeroSectionState extends State<HeroSection> {
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Material(
-                elevation: 2.0,
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                    hintText: "Which School are you looking?",
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.search),
-                    prefixIconColor: Colors.red,
-                  ),
-                ),
-              )
-            ],
-          )
-        ),
-        const SizedBox(
-          height: 24.0,
-        ),
         Stack(
           children: [
             Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class CommonFormScreen extends StatefulWidget {
   static const routeName = "/common-form";
@@ -163,12 +164,79 @@ class _CommonFormScreenState extends State<CommonFormScreen> {
     },
   ];
 
+  final _isMinority = [
+    {
+      "name": "Select Minority",
+      "value": ""
+    },
+    {
+      "name": "Yes",
+      "value": "1"
+    },
+    {
+      "name": "No",
+      "value": "2"
+    },
+  ];
+  final _childBornOrder = [
+    {
+      "name": "Select",
+      "value": ""
+    },
+    {
+      "name": "Only/Single Child (No Siblings)",
+      "value": "1"
+    },
+    {
+      "name": "First/Eldest/Twin Child",
+      "value": "2"
+    },
+    {
+      "name": "Second/Twin Child",
+      "value": "3"
+    },
+    {
+      "name": "Third Child",
+      "value": "4"
+    },
+    {
+      "name": "Fourth Child",
+      "value": "5"
+    },
+    {
+      "name": "None of the Above",
+      "value": "6"
+    },
+  ];
+
+  final _isOrphan = [
+    {
+      "name": "Select",
+      "value": ""
+    },
+    {
+      "name": "Adopted",
+      "value": "1"
+    },
+    {
+      "name": "Orphan",
+      "value": "2"
+    },
+    {
+      "name": "No",
+      "value": "3"
+    },
+  ];
+
   final Map<String, String> _formValues = {
     "bloodGroup": "",
     "motherTongue": "",
     "nationality": "",
     "religion": "",
-    "category": ""
+    "category": "",
+    "minority": "",
+    "childBornOrder": "",
+    "isOrphanOrAdopted": "",
   };
 
   Widget _buildLabel(String label) {
@@ -187,6 +255,7 @@ class _CommonFormScreenState extends State<CommonFormScreen> {
   Widget _buildDropdownButton({ required String value, required List<Map<String, String>> items, required String key }) {
     return DropdownButtonFormField(
       decoration: const InputDecoration(
+        isDense: true,
         border: OutlineInputBorder()
       ),
       value: value,
@@ -277,16 +346,143 @@ class _CommonFormScreenState extends State<CommonFormScreen> {
                 },
               )
             ),
-            const SizedBox(
-              height: 25.0,
+            _buildSizedBox(16.0),
+            Container(
+              width: double.infinity,
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Form Filled: 0%",
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    )
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  LinearPercentIndicator(
+                    width: MediaQuery.of(context).size.width - 24,
+                    lineHeight: 15.0,
+                    percent: 0.1,
+                    progressColor: Colors.green,
+                  ),
+                ],
+              )
             ),
+            _buildSizedBox(16.0),
+            Container(
+              width: double.infinity,
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "You are applying for",
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    )
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              "Child Name",
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.grey,
+                              )
+                            ),
+                            Text(
+                              "Aiden Sharma",
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold
+                              )
+                            ),
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                              "Child Gender",
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.grey,
+                              )
+                            ),
+                            Text(
+                              "Boy",
+                              style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold
+                              )
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                                "Class",
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.grey,
+                                )
+                            ),
+                            Text(
+                                "Class 1",
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                                "Date of Birth",
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.grey,
+                                )
+                            ),
+                            Text(
+                                "08/07/2015",
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold
+                                )
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              )
+            ),
+            _buildSizedBox(16.0),
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
               color: Colors.white,
               child: Form(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildLabel("Blood Group"),
                     _buildSizedBox(10.0),
@@ -327,6 +523,50 @@ class _CommonFormScreenState extends State<CommonFormScreen> {
                       items: _category,
                       key: "category"
                     ),
+                    _buildSizedBox(25.0),
+                    _buildLabel("Minority"),
+                    _buildSizedBox(10.0),
+                    _buildDropdownButton(
+                      value: _formValues["minority"] ?? "",
+                      items: _isMinority,
+                      key: "minority"
+                    ),
+                    _buildSizedBox(25.0),
+                    _buildLabel("Child Born Order"),
+                    _buildSizedBox(10.0),
+                    _buildDropdownButton(
+                        value: _formValues["childBornOrder"] ?? "",
+                        items: _childBornOrder,
+                        key: "childBornOrder"
+                    ),
+                    _buildSizedBox(25.0),
+                    _buildLabel("Is child Adopted/Orphan"),
+                    _buildSizedBox(10.0),
+                    _buildDropdownButton(
+                        value: _formValues["isOrphanOrAdopted"] ?? "",
+                        items: _isOrphan,
+                        key: "isOrphanOrAdopted"
+                    ),
+                    _buildSizedBox(25.0),
+                    Align(
+                      alignment: AlignmentDirectional.bottomEnd,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          OutlinedButton(
+                            onPressed: () {},
+                            child: Text("Cancel")
+                          ),
+                          const SizedBox(
+                            width: 5.0,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Next")
+                          ),
+                        ],
+                      )
+                    )
                   ],
                 ),
               )
