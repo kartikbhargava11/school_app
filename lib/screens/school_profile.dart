@@ -50,17 +50,11 @@ class _SchoolProfileState extends State<SchoolProfile> {
     );
   }
 
-  Widget _buildSizedBox({required double height}) {
-    return SizedBox(
-      height: height,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: _scrollOffset > 300
+      appBar: _scrollOffset > 250
         ?
       AppBar(
         backgroundColor: Colors.white,
@@ -89,11 +83,11 @@ class _SchoolProfileState extends State<SchoolProfile> {
       )
         :
       null,
-      body: SingleChildScrollView(
+      body: CustomScrollView(
         controller: _scrollController,
-        child: Column(
-          children: [
-            Stack(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Stack(
               children: [
                 Image(
                   height: 280,
@@ -147,37 +141,109 @@ class _SchoolProfileState extends State<SchoolProfile> {
                 )
               ],
             ),
-            _buildContainer(
-              child: const SchoolProfileActions(),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 6.0),
+            sliver: SliverToBoxAdapter(
+              child: _buildContainer(
+                child: const SchoolProfileActions(),
+              ),
+            )
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 6.0),
+            sliver: SliverAppBar(
+              backgroundColor: Colors.white,
+              elevation: 4.0,
+              pinned: true,
+              automaticallyImplyLeading: false,
+              title: Row(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      border: Border.all(color: Colors.grey, width: 1.0),
+                    ),
+                    child: const Icon(
+                      Icons.person,
+                      size: 24.0,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(color: Colors.grey, width: 1.0),
+                      ),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "I am looking Admission for",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10.0
+                                )
+                              ),
+                              Text(
+                                "Aiden Sharma",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10.0,
+                                  fontWeight: FontWeight.bold
+                                )
+                              )
+                            ],
+                          ),
+                          const Spacer(),
+                          const Icon(
+                            Icons.keyboard_arrow_down_outlined,
+                            color: Colors.black,
+                            size: 22.0,
+                          )
+                        ],
+                      )
+                    ),
+                  ),
+                ],
+              ),
             ),
-            _buildSizedBox(
-              height: 6.0,
-            ),
-            _buildContainer(
-              child: SchoolProfileApplyToClasses(
-                formDetails: widget.school.formDetails,
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 6.0),
+            sliver: SliverToBoxAdapter(
+              child: _buildContainer(
+                child: SchoolProfileApplyToClasses(
+                  formDetails: widget.school.formDetails,
+                )
               )
-            ),
-            _buildSizedBox(
-              height: 6.0,
-            ),
-            _buildContainer(
-              child: SchoolProfileStats(
-                school: widget.school,
+            )
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 6.0),
+            sliver: SliverToBoxAdapter(
+              child: _buildContainer(
+                child: SchoolProfileStats(
+                  school: widget.school,
+                )
               )
-            ),
-            _buildSizedBox(
-              height: 6.0,
-            ),
-            _buildContainer(
-              child: SchoolProfileFeeStructure()
-            ),
-            _buildSizedBox(
-              height: 6.0,
-            ),
-          ]
-        )
-      ),
+            )
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 6.0),
+            sliver: SliverToBoxAdapter(
+              child: _buildContainer(
+                child: SchoolProfileFeeStructure()
+              )
+            )
+          ),
+        ],
+      )
     );
   }
 }

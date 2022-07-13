@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:sticky_headers/sticky_headers.dart';
 
 import '../widgets/hero_section.dart';
 import '../widgets/school_card.dart';

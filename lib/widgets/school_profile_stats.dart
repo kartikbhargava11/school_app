@@ -30,112 +30,115 @@ class SchoolProfileStats extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
           child: Row(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Ownership",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0
-                    )
-                  ),
-                  Text(
-                    school.ownership,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.0
-                    )
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  const Text(
-                    "Year of Establishment",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0
-                    )
-                  ),
-                  Text(
-                    "${school.establishment}",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.0
-                    )
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  const Text(
-                    "Campus Size",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0
-                    )
-                  ),
-                  Text(
-                    school.campusSize,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.0
-                    )
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Ownership",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.0
+                      )
+                    ),
+                    Text(
+                      school.ownership,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0
+                      )
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    const Text(
+                      "Year of Establishment",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.0
+                      )
+                    ),
+                    Text(
+                      "${school.establishment}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0
+                      )
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    const Text(
+                      "Campus Size",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.0
+                      )
+                    ),
+                    Text(
+                      school.campusSize,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0
+                      )
+                    ),
+                  ],
+                ),
               ),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Board",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0
-                    )
-                  ),
-                  Text(
-                    school.board,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.0
-                    )
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  const Text(
-                    "Co-Ed Status",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0
-                    )
-                  ),
-                  Text(
-                    school.coEdStatus,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.0
-                    )
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  const Text(
-                    "Campus Type",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0
-                    )
-                  ),
-                  Text(
-                    school.campusType,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.0
-                    )
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Board",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.0
+                      )
+                    ),
+                    Text(
+                      school.board,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0
+                      )
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    const Text(
+                      "Co-Ed Status",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.0
+                      )
+                    ),
+                    Text(
+                      school.coEdStatus,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0
+                      )
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    const Text(
+                      "Campus Type",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.0
+                      )
+                    ),
+                    Text(
+                      school.campusType,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0
+                      )
+                    ),
+                  ],
+                ),
               )
             ],
           ),

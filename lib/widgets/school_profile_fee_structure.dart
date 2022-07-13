@@ -44,6 +44,8 @@ class SchoolProfileFeeStructure extends StatelessWidget {
     },
   ];
 
+  final List<Widget> _feeStructure = [];
+
   SchoolProfileFeeStructure({Key? key}) : super(key: key);
 
   void _changeStandard(BuildContext ctx) {
@@ -106,6 +108,56 @@ class SchoolProfileFeeStructure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    for (var i = 0; i < _fees.length; i++) {
+      final Map<String, String> fee = _fees[i];
+      _feeStructure.add(
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      "${fee['name']}",
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12.0
+                      )
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      fee["tenure"] as String,
+                      style: const TextStyle(
+                        fontSize: 12.0
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      "Rs.${fee['fees']}",
+                      style: const TextStyle(
+                          fontSize: 12.0
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+            if (i != _fees.length - 1)
+              const Divider(
+                height: 1.0,
+                color: Colors.grey,
+              )
+          ],
+        )
+      );
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -186,7 +238,7 @@ class SchoolProfileFeeStructure extends StatelessWidget {
           )
         ),
         const Padding(
-          padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+          padding: EdgeInsets.only(top: 12.0, left: 12.0, right: 12.0),
           child: Text(
             "Fee Details for Pre-Nursery",
             style: TextStyle(
@@ -195,54 +247,7 @@ class SchoolProfileFeeStructure extends StatelessWidget {
             )
           ),
         ),
-        ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: _fees.length,
-          separatorBuilder: (ctx, index) {
-            return const Divider(
-              color: Colors.grey,
-              thickness: 1.0,
-            );
-          },
-          itemBuilder: (ctx, index) {
-            final fee = _fees[index];
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Text(
-                      "${fee['name']}",
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold
-                      )
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      fee["tenure"] as String,
-                      style: const TextStyle(
-                        fontSize: 12.0
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "Rs.${fee['fees']}",
-                      style: const TextStyle(
-                        fontSize: 12.0
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            );
-          },
-        ),
+        ..._feeStructure,
         Container(
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
           child: Column(
